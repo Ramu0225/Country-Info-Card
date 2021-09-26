@@ -67,7 +67,7 @@ function CartItemPage() {
   const country = cartItem;
   
 	return (
-		<div>
+		<section>
 			<Button onClick={handleOpen} variant="outlined" color="success">
 				<CartIcon />
 			</Button>
@@ -82,14 +82,14 @@ function CartItemPage() {
 						<CloseIcon />
 						Close
 					</Button>
-					<div>
+					<section>
 						<h3>List of items to shop:</h3>
 						{cartItem.length === 0 ? (
 							"No items in the cart to display"
 						) : (
-							<div>
+							<section>
 								{country.map((country, i) => (
-									<div key={i} className={classes.items}>
+									<section key={i} className={classes.items}>
 										<TableBody>
 											<CountryTableRow
 												rowElements={[
@@ -108,14 +108,14 @@ function CartItemPage() {
 										>
 											Remove <DeleteForeverOutlined />
 										</Button>
-									</div>
+									</section>
 								))}
-							</div>
+							</section>
 						)}
-					</div>
+					</section>
 				</Box>
 			</Modal>
-		</div>
+		</section>
 	);
 }
 export default CartItemPage;

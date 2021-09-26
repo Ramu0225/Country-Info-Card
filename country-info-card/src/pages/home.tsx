@@ -19,9 +19,9 @@ function HomePage() {
 	return (
 		<React.Fragment>
 			<Header />
-			<div className={classes.align}>
+			<section className={classes.align}>
 				<CountriesCardContent />
-			</div>
+			</section>
 		</React.Fragment>
 	);
 }

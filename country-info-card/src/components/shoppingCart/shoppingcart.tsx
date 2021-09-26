@@ -15,10 +15,10 @@ function ShoppingCartIcon({ quantity }: { quantity: number }) {
 	const classes = useStyles();
 
 	return (
-		<div className={classes.root}>
+		<section className={classes.root}>
 			<AddShoppingCartIcon />
 			<span>{quantity}</span>
-		</div>
+		</section>
 	);
 }
 export default ShoppingCartIcon;

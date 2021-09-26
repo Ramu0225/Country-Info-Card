@@ -20,14 +20,14 @@ const useStyles = makeStyles({
 function NavigationBar() {
 	const classes = useStyles();
 	return (
-		<div className={classes.navbar}>
+		<section className={classes.navbar}>
 			<Link to={`/`}>
 				<HomeButton />
 			</Link>
-			<div className={classes.icon}>
+			<section className={classes.icon}>
 				<CartItemPage />
-			</div>
-		</div>
+			</section>
+		</section>
 	);
 }
 

@@ -12,6 +12,7 @@ const useStyles = makeStyles({
 	align: {
 		padding: "0",
 		margin: "0",
+		width: "300px",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
 		fontSize: "12px",
 	},
 	title: {
+		textAlign:"center",
 		fontWeight: "bold",
 		fontSize: "25px",
 	},
@@ -57,13 +59,13 @@ function CountryTypography({
 			{rowElements.map((r, i) => (
 				<CardContent key={i} className={classes.align}>
 					{r.isImage && (
-						<div className={classes.img}>
+						<section className={classes.img}>
 							<img src={r.name} alt="flag" width="300px" height="200px" />
-						</div>
+						</section>
 					)}
 					<TableRow>
 						{!r.isImage && r.isTitle && (
-							<TableCell className={classes.title} align="center">
+							<TableCell className={classes.title} >
 								<Link
 									className={classes.link}
 									to={{
@@ -75,16 +77,16 @@ function CountryTypography({
 							</TableCell>
 						)}
 						{!r.isImage && !r.isTitle && r.isPopulation && (
-							<>
+							<section>
 								<TableCell>
 									{r.name} <PeopleIcon sx={{ pl: 2 }} />
 								</TableCell>
-							</>
+							</section>
 						)}
 						{!r.isImage && !r.isTitle && !r.isPopulation && (
-							<>
+							<section>
 								<TableCell>{r.name}</TableCell>
-							</>
+							</section>
 						)}
 					</TableRow>
 				</CardContent>

@@ -36,19 +36,19 @@ const useStyles = makeStyles({
 function Header() {
 	const classes = useStyles();
 	return (
-		<div className={classes.header}>
+		<section className={classes.header}>
 			<Link to={`/`}>
 				<HomeButton />
 			</Link>
-			<div className={classes.align2}>
+			<section className={classes.align2}>
 				<SearchInput />
 				<SortCountryBy />
-			</div>
-			<div className={classes.icon}>
+			</section>
+			<section className={classes.icon}>
 				<CartItemPage />
 				<ThemeSwitch />
-			</div>		
-		</div>
+			</section>		
+		</section>
 	);
 }
 

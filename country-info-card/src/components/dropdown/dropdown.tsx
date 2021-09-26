@@ -5,6 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+
 export interface CountryElement {
 	name: string;
 	property: string;
@@ -29,7 +30,7 @@ function NestedList({
 			aria-labelledby="nested-list-subheader"
 		>
 			{countryElements.map((e, i) => (
-				<div key={i}>
+				<section key={i}>
 					<ListItemButton
 						onClick={() => {
 							handleClick(i);
@@ -47,7 +48,7 @@ function NestedList({
 							</ListItemButton>
 						</List>
 					</Collapse>
-				</div>
+				</section>
 			))}
 		</List>
 	);

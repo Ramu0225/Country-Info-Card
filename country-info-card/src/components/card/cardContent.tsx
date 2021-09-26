@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Button, Card } from "@material-ui/core";
 import CountryTypography from "./cardTypography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/action";
 import { fecthCountries } from "../../redux/action";
-import { Country, State } from "../../redux/type";
+import { State } from "../../redux/type";
 
 const useStyles = makeStyles({
 	root: {
@@ -58,7 +58,7 @@ function CountriesCardContent() {
 
 	const classes = useStyles();
 	return (
-		<div className={classes.row}>
+		<section className={classes.row} >
 			{!!countries.length &&
 				countries.map((country) => (
 					<Card
@@ -84,7 +84,7 @@ function CountriesCardContent() {
 					</Card>
 				))}
 			{!!error && <h1>{error}</h1>}
-		</div>
+		</section>
 	);
 }
 

@@ -14,6 +14,7 @@ const useStyles = makeStyles({
 	align1: {
 		width: "300px",
 		padding: "0",
+		margin:"15px 0" ,
 		background: "#eeeeee",
 		boxShadow: "0 3px 4px 2px rgba(255, 105, 135, .3)",
 		display: "flex",
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 	},
 	align: {
 		width: "100%",
-		height: "100vh",
+		minHeight: "100vh",
 		marginTop: "0",
 		display: "flex",
 		flexDirection: "column",
@@ -43,6 +44,9 @@ const useStyles = makeStyles({
 		color: "black",
 		fontSize: "15px",
 		fontFamily: "Roboto",
+	},
+	title: {
+		textAlign:"center"
 	},
 	NavigationButton: {
 		width: "110px",
@@ -87,13 +91,13 @@ function CountryPage() {
 	});
 	return (
 		<React.Fragment>
-			<div>
+			<section>
 				<NavigationBar />
-			</div>
-			<div className={classes.align}>
+			</section>
+			<section className={classes.align}>
 				{country.map((country, i) => (
 					<Card key={i} className={classes.align1}>
-						<h2>{country.name}</h2>
+						<h2 className={classes.title}>{country.name}</h2>
 						<CountryTypography
 							rowElements={[{ name: country.flag, isImage: true }]}
 						/>
@@ -107,11 +111,11 @@ function CountryPage() {
 							]}
 						/>
 						<CardActions>
-							<div className={classes.NavigationButton}>
+							<section className={classes.NavigationButton}>
 								<Link to="/" className={classes.link}>
 									<p>Back To Home</p>
 								</Link>
-							</div>
+							</section>
 							<Button
 								onClick={() => dispatch(addToCart(country))}
 								className={classes.cartButton}
@@ -123,7 +127,7 @@ function CountryPage() {
 					</Card>
 				))}
 				{!!error && <h1>{error}</h1>}
-			</div>
+			</section>
 		</React.Fragment>
 	);
 }

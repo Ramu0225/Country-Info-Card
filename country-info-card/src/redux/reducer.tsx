@@ -38,8 +38,6 @@ const reducer = (state = INITIAL_STATE, action: IActions) => {
 				),
 			};
 		case "CHANGE_MODE":
-			const changeMode = action.payload;
-			console.log(changeMode);
 			return {
 				...state,
 				Theme: !state.Theme,
