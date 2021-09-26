@@ -8,4 +8,5 @@ const storeFactory = () => {
   const reduxStore = createStore(reducer, composeWithDevTools(applyMiddleware(...middleware)));
   return reduxStore
 }
+
 export default storeFactory;

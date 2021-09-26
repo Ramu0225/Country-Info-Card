@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 			width: "16ch",
 			backgroundColor: "snow",
 			textColor: "#58965A",
-			borderRadius:'5px',
+			borderRadius: "5px",
 		},
 	},
 }));
@@ -19,12 +19,12 @@ function SearchInput() {
 	const [value, setValue] = useState("");
 	const classes = useStyles();
 	const dispatch = useDispatch();
-	const searchCountries = (e) => {
+	const searchCountries = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		setValue(e.target.value);
 		dispatch(searchCountry(value));
 	};
-	const keyPressHandler = (e) => {
+	const keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.code === "Enter") {
 			e.preventDefault();
 		}
@@ -40,7 +40,6 @@ function SearchInput() {
 				variant="outlined"
 				value={value}
 			/>
-	
 		</form>
 	);
 }

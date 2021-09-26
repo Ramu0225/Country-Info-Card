@@ -1,19 +1,19 @@
-const INITIAL_STATE = {
-  cartItem: [],
-  data:[],
-	countries: [],
-	country:[],
-	countries_error: "",
-	country_error: "",
-	Theme: Boolean,
-	BuyButtonDisable:false,
+import { Country, IActions, State } from "./type";
 
+const INITIAL_STATE: State = {
+	cartItem: [],
+	data: [],
+	countries: [],
+	country: [],
+	countriesError: "",
+	countryError: "",
+	Theme: true,
 };
 
-const reducer = (state = INITIAL_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action: IActions) => {
 	switch (action.type) {
 		case "ADD_COUNTRY":
-			const addCountry = action.payload;
+			const addCountry: Country = action.payload;
 			const addName = addCountry.name;
 			const existCountry = state.cartItem.find((country) => {
 				if (addName === country.name) {
@@ -27,7 +27,6 @@ const reducer = (state = INITIAL_STATE, action) => {
 				return {
 					...state,
 					cartItem: [...state.cartItem, addCountry],
-					
 				};
 			}
 		case "REMOVE_COUNTRY":
@@ -37,7 +36,6 @@ const reducer = (state = INITIAL_STATE, action) => {
 				cartItem: state.cartItem.filter(
 					(country) => countryName !== country.name
 				),
-			
 			};
 		case "CHANGE_MODE":
 			const changeMode = action.payload;
@@ -45,7 +43,7 @@ const reducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				Theme: !state.Theme,
-			}
+			};
 		case "FETCH_COUNTRIES_SUCCESS":
 			const countries = action.payload;
 			return {
@@ -58,14 +56,14 @@ const reducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				countries_error,
-				Theme:state.Theme,
+				Theme: state.Theme,
 			};
 		case "FETCH_COUNTRY_SUCCESS":
 			const country = action.payload;
 			return {
 				...state,
 				country,
-				Theme:state.Theme,
+				Theme: state.Theme,
 			};
 		case "FETCH_COUNTRY_ERROR":
 			const country_error = action.payload;
@@ -80,7 +78,6 @@ const reducer = (state = INITIAL_STATE, action) => {
 				countries: state.data.filter((country) =>
 					country.name.toLowerCase().includes(name.toLowerCase())
 				),
-				
 			};
 		case "SORT_BY_POPULATION":
 			return {
@@ -92,11 +89,11 @@ const reducer = (state = INITIAL_STATE, action) => {
 		case "SORT_BY_REGION":
 			return {
 				...state,
-				countries: state.countries.sort((s1, s2) =>  {
+				countries: state.countries.sort((s1, s2) => {
 					const nameA = s1.region.toLowerCase();
 					const nameB = s2.region.toLowerCase();
 					return nameA > nameB ? -1 : 1;
-				})
+				}),
 			};
 		case "SORT_BY_COUNTRY_NAME":
 			return {
@@ -105,9 +102,9 @@ const reducer = (state = INITIAL_STATE, action) => {
 					const nameA = s1.name.toLowerCase();
 					const nameB = s2.name.toLowerCase();
 					return nameA > nameB ? 1 : -1;
-				})
+				}),
 			};
-	
+
 		default:
 			return state;
 	}

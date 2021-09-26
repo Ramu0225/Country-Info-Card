@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/action";
 import { fecthCountries } from "../../redux/action";
+import { Country, State } from "../../redux/type";
 
 const useStyles = makeStyles({
 	root: {
@@ -40,17 +41,21 @@ const useStyles = makeStyles({
 
 function CountriesCardContent() {
 	const dispatch = useDispatch();
-	const [countries, error] = useSelector((state) => {
-		return [state.countries, state.error];
+
+	const { countries, error } = useSelector((state: State) => {
+		return { countries: state.countries, error: state.countriesError };
 	});
+
 	useEffect(() => {
 		if (!countries.length) {
 			dispatch(fecthCountries());
 		}
 	}, [dispatch, countries]);
-	const cartItem = useSelector((state) => {
+
+	const cartItem = useSelector((state: State) => {
 		return state.cartItem;
 	});
+
 	const classes = useStyles();
 	return (
 		<div className={classes.row}>
@@ -61,7 +66,6 @@ function CountriesCardContent() {
 						className={`${classes.root} ${classes.column}`}
 					>
 						<CountryTypography
-							isHomePage="true"
 							rowElements={[
 								{ name: country.flag, isImage: true },
 								{ name: country.name, isTitle: true },
@@ -72,10 +76,8 @@ function CountriesCardContent() {
 						/>
 						<Button
 							onClick={() => dispatch(addToCart(country))}
-							align="justify"
 							className={classes.cartButton}
-							key={country.name}
-							disabled={cartItem.find((c) => (c.name === country.name ? true : false))}
+							disabled={!!cartItem.find((c) => c.name === country.name)}
 						>
 							BUY
 						</Button>
