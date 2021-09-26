@@ -1,0 +1,13 @@
+.App {
+  background-color: snow;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Dark {
+  background-color: rgba(38, 43, 51, 0.959);
+  background-image: url('./images/stars-in-the-sky.jpg');
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
