@@ -15,6 +15,7 @@ export const themeMode = (mode: boolean) => {
 export const sortByPopulation = () => {
 	return {
 		type: "SORT_BY_POPULATION",
+	
 	};
 };
 export const sortByCountryName = () => {

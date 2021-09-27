@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 		fontSize: "25px",
 	},
 	img: {
-		width: "100%",
+		width: "dimScreen.width",
 		margin: "0",
 		padding: "0",
 		backgroundSize: "cover",
@@ -60,7 +60,7 @@ function CountryTypography({
 				<CardContent key={i} className={classes.align}>
 					{r.isImage && (
 						<section className={classes.img}>
-							<img src={r.name} alt="flag" width="300px" height="200px" />
+							<img src={r.name} alt="flag" width="300px" />
 						</section>
 					)}
 					<TableRow>

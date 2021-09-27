@@ -28,20 +28,18 @@ function SortCountryBy() {
 			sx={{
 				maxWidth: 290,
 				minWidth: 100,
-				backgroundColor: "snow",
+				backgroundColor: "#DEDADA",
 				borderRadius: 2,
 			}}
 		>
 			<FormControl fullWidth>
-				<InputLabel id="demo-simple-select-label" >
-					Sort by
-				</InputLabel>
+				<InputLabel id="demo-simple-select-label">Sort by</InputLabel>
 				<Select
 					labelId="demo-simple-select-label"
 					id="demo-simple-select"
 					value={sort}
 					label="sort-by"
-					onChange={handleChange}	
+					onChange={handleChange}
 				>
 					<MenuItem value={"CountryName"}>Country-Name(A-Z)</MenuItem>
 					<MenuItem value={"Population"}>Population(descending)</MenuItem>

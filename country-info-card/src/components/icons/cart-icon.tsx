@@ -7,7 +7,7 @@ function CartIcon() {
 		return state.cartItem;
 	});
 	return (
-		<section color="success">
+		<section color="success" >
 			<ShoppingCartIcon quantity={cartItem.length} />
 		</section>
 	);

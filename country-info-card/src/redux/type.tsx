@@ -29,7 +29,7 @@ export interface ChangeModeAction {
 	payload: Boolean;
 }
 export interface SortByPopulationAction {
-	type: ActionTypes.sortByPopulation;
+  type: ActionTypes.sortByPopulation;
 }
 export interface SortByCountryNameAction {
 	type: ActionTypes.sortByCountryName;

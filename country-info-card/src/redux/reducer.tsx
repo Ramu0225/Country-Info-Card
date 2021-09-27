@@ -1,7 +1,9 @@
 import { Country, IActions, State } from "./type";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const INITIAL_STATE: State = {
-	cartItem: [],
+	cartItem: [] ,
 	data: [],
 	countries: [],
 	country: [],
@@ -9,18 +11,18 @@ const INITIAL_STATE: State = {
 	countryError: "",
 	Theme: true,
 };
-
+const persistConfig = {
+	key: "root",
+	storage,
+	whitelist: ["cartItem", "Theme"],
+};
 const reducer = (state = INITIAL_STATE, action: IActions) => {
 	switch (action.type) {
 		case "ADD_COUNTRY":
 			const addCountry: Country = action.payload;
 			const addName = addCountry.name;
-			const existCountry = state.cartItem.find((country) => {
-				if (addName === country.name) {
-					return true;
-				}
-				return false;
-			});
+			const existCountry = state.cartItem.find((country:any) =>
+				addName === country.name);
 			if (existCountry) {
 				return state;
 			} else {
@@ -34,7 +36,7 @@ const reducer = (state = INITIAL_STATE, action: IActions) => {
 			return {
 				...state,
 				cartItem: state.cartItem.filter(
-					(country) => countryName !== country.name
+					(country:any) => countryName !== country.name
 				),
 			};
 		case "CHANGE_MODE":
@@ -107,4 +109,4 @@ const reducer = (state = INITIAL_STATE, action: IActions) => {
 			return state;
 	}
 };
-export default reducer;
+export default persistReducer(persistConfig, reducer);

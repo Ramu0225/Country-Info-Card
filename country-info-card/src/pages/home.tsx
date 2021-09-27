@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CountriesCardContent from '../components/card/cardContent';
-import Header from '../components/header.component/header';
+import Header from '../components/header.component/header-homePage';
 
 const useStyles = makeStyles({
 	align: {

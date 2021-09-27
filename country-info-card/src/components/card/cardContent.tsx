@@ -59,7 +59,7 @@ function CountriesCardContent() {
 	const classes = useStyles();
 	return (
 		<section className={classes.row} >
-			{!!countries.length &&
+			{(!!countries.length) &&
 				countries.map((country) => (
 					<Card
 						key={country.name}
@@ -77,13 +77,16 @@ function CountriesCardContent() {
 						<Button
 							onClick={() => dispatch(addToCart(country))}
 							className={classes.cartButton}
-							disabled={!!cartItem.find((c) => c.name === country.name)}
+							disabled={!!cartItem.find((c:any) => c.name === country.name)}
 						>
 							BUY
 						</Button>
 					</Card>
-				))}
-			{!!error && <h1>{error}</h1>}
+				))
+			}
+			{
+				!!error && <h1>{error}</h1>
+			}
 		</section>
 	);
 }

@@ -5,8 +5,8 @@ import CountryTypography from "../components/card/cardTypography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { fecthCountry } from "../redux/action";
-import NestedList from "../components/dropdown/dropdown";
-import NavigationBar from "../components/navbar/navbar";
+import NestedList from "../components/dropdown/card-dropDownItems";
+import NavigationBar from "../components/header.component/header-countryPage";
 import { addToCart } from "../redux/action";
 import { Country, State } from "../redux/type";
 
@@ -113,13 +113,13 @@ function CountryPage() {
 						<CardActions>
 							<section className={classes.NavigationButton}>
 								<Link to="/" className={classes.link}>
-									<p>Back To Home</p>
+									<p>Back</p>
 								</Link>
 							</section>
 							<Button
 								onClick={() => dispatch(addToCart(country))}
 								className={classes.cartButton}
-								disabled={!!cartItem.find((c) => c.name === country.name)}
+								disabled={!!cartItem.find((c:any) => c.name === country.name)}
 							>
 								BUY
 							</Button>

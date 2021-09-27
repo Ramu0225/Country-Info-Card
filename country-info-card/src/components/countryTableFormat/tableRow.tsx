@@ -29,8 +29,7 @@ function CountryTableRow({ rowElements }: { rowElements: Array<RowElement> }) {
 							<Link
 								className={classes.link}
 								to={{
-									pathname: `/country/${rowElements[1].name}`,
-									state: { name: rowElements[1].name },
+									pathname: `/country/${rowElements[1].name}`
 								}}
 							>
 								{r.name}

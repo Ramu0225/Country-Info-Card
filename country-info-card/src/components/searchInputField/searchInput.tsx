@@ -7,10 +7,9 @@ import { searchCountry } from "../../redux/action";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		"& > *": {
-			margin: theme.spacing(1),
-			width: "16ch",
+			margin: theme.spacing(3),
+			width: "19ch",
 			backgroundColor: "snow",
-			textColor: "#58965A",
 			borderRadius: "5px",
 		},
 	},
@@ -37,7 +36,8 @@ function SearchInput() {
 				onKeyPress={keyPressHandler}
 				id="outlined-basic"
 				label="Search Country"
-				variant="outlined"
+				variant="filled"
+				color="primary"
 				value={value}
 			/>
 		</form>

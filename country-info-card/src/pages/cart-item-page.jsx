@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import CartIcon from "../components/cart-icon/cart-icon";
+import CartIcon from "../components/icons/cart-icon";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteForeverOutlined } from "@material-ui/icons";
 import { removeFromCart } from "../redux/action";
@@ -60,9 +60,7 @@ function CartItemPage() {
   const cartItem = useSelector((state) => {
 		return state.cartItem;
 	});
-	React.useEffect(() => {
-		localStorage.setItem('cart', JSON.stringify(cartItem));
-	}, [cartItem])
+	
 	
   const country = cartItem;
   
@@ -84,7 +82,7 @@ function CartItemPage() {
 					</Button>
 					<section>
 						<h3>List of items to shop:</h3>
-						{cartItem.length === 0 ? (
+						{(cartItem.length === 0 )? (
 							"No items in the cart to display"
 						) : (
 							<section>

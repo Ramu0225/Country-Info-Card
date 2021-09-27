@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import HomeButton from "../customButton/home-icon";
+import HomeButton from "../icons/home-icon";
 import { makeStyles } from "@material-ui/core/styles";
 import CartItemPage from "../../pages/cart-item-page";
+import { useDispatch } from "react-redux";
+import { fecthCountries } from "../../redux/action";
 
 const useStyles = makeStyles({
 	icon: {
@@ -17,11 +19,13 @@ const useStyles = makeStyles({
     justifyContent: 'space-between'
 	}
 });
+
 function NavigationBar() {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	return (
 		<section className={classes.navbar}>
-			<Link to={`/`}>
+			<Link to={`/`} onClick={() => dispatch(fecthCountries())}>
 				<HomeButton />
 			</Link>
 			<section className={classes.icon}>
