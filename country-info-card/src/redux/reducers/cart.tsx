@@ -32,4 +32,5 @@ const cartReducer = (state = DEFAULT_STATE, action: IActions) => {
 			return state;
 	}
 };
+
 export default cartReducer;

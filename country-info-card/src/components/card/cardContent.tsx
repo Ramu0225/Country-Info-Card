@@ -1,12 +1,9 @@
-//import { useEffect } from "react";
 import { Button, Card } from "@material-ui/core";
 import CountryTypography from "./cardTypography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/action";
-//import { fecthCountries } from "../../redux/action";
-import {  StateCombiner} from "../../redux/type";
-//import { useSelector } from "react-redux";
+import {  AllState} from "../../redux/type";
 import UseCountriesHook from "../../custom-hooks/useCountries";
 
 const useStyles = makeStyles({
@@ -43,27 +40,18 @@ const useStyles = makeStyles({
 
 function CountriesCardContent() {
 	const dispatch = useDispatch();
-	//useEffect(() => {
-	//	dispatch(fecthCountries());
-	//}, [dispatch]);
-	//const { countries, error } = useSelector((state:StateCombiner) => {
-		
-	//return {
-	//countries: state.country.countries,
-	//error: state.country.countriesError,
-	//	};
-	//	});
 	const [countries, error] = UseCountriesHook();
 	
-	const cartItem = useSelector((state: StateCombiner) => {
+	const cartItem = useSelector((state: AllState) => {
 		return state.cart.cartItem;
 	});
-	const isInCartItem = ((countryname:string) =>{
+
+	const isInCartItem = ((countryname: string) => {
 		return cartItem?.some((c: any) => c.name === countryname);
 	});
 
 	const classes = useStyles();
-	
+
 	return (
 		<section className={classes.row} >
 			{!!countries &&
@@ -74,7 +62,7 @@ function CountriesCardContent() {
 					>
 						<CountryTypography
 							rowElements={[
-								{ name: country.flags.png, isImage: true },
+								{ name: country.flag, isImage: true },
 								{ name: country.name, isTitle: true },
 								{ name: `${country.population}`, isPopulation: true },
 								{ name: `${country.region}` },

@@ -15,4 +15,5 @@ const themeReducer = (state = DEFAULT_STATE, action: IActions) => {
 			return state;
 	}
 };
+
 export default themeReducer;

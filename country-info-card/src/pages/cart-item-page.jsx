@@ -74,7 +74,7 @@ function CartItemPage() {
 		return state.cart.cartItem;
 	});
   const country = cartItem;
-  
+	
 	return (
 		<section>
 			<Button onClick={handleOpen} variant="outlined" color="success">
@@ -88,10 +88,10 @@ function CartItemPage() {
 			>
 				<Box className={classes.style1}>
 					<section className={classes.header}>
-						<Button color="warning" onClick={handleClose}>
-							<CloseIcon />
-						</Button>
 						<h3>ITEMS IN SHOPPING CART</h3>
+						<Button color="warning" onClick={handleClose}>
+							<CloseIcon /><p>Close</p>
+						</Button>
 					</section>
 					<section>
 						{!!country.length === 0 ? (

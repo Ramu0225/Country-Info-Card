@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 	align1: {
 		width: "300px",
 		padding: "0",
-		margin:"15px 0" ,
+		margin: "15px 0",
 		background: "#eeeeee",
 		boxShadow: "0 3px 4px 2px rgba(255, 105, 135, .3)",
 		display: "flex",
@@ -47,7 +47,7 @@ const useStyles = makeStyles({
 		fontFamily: "Roboto",
 	},
 	title: {
-		textAlign:"center"
+		textAlign: "center",
 	},
 	NavigationButton: {
 		width: "110px",
@@ -65,7 +65,7 @@ const useStyles = makeStyles({
 	},
 });
 const languageString = (country: Country) => {
-	return country.languages.map((l:any) => l.name).join(", ");
+	return country.languages.map((l: any) => l.name).join(", ");
 };
 const currenciesString = (country: Country) => {
 	if (!country.currencies) {
@@ -73,19 +73,17 @@ const currenciesString = (country: Country) => {
 	} else {
 		return country.currencies.map((l: any) => l.name).join(", ");
 	}
-	
 };
 const timeZoneString = (country: any) => {
-	if (!country.timezones) {
+	if (!country.timezones.length) {
 		return "none";
-		
 	} else {
 		return country.timezones.join(", ");
 	}
-} ;
+};
 
 const borderString = (country: Country) => {
-	if (!country.borders) {
+	if (!country.borders.length) {
 		return "None";
 	} else {
 		return country.borders.join(", ");
@@ -97,14 +95,15 @@ function CountryPage() {
 	const classes = useStyles();
 	const params: { id: string } = useParams();
 	const name = params.id;
-	const [ country, error ] = UseCountryHook(name);
-	console.log(country,name);
+	const [country, error] = UseCountryHook(name);
+
 	const cartItem = useSelector((state: AllState) => {
-			return state.cart.cartItem;
-		});
-		const isInCartItem = (countryName: string) => {
-			return cartItem?.some((c: any) => c.name === countryName);
-		};
+		return state.cart.cartItem;
+	});
+	const isInCartItem = (countryName: string) => {
+		return cartItem?.some((c: any) => c.name === countryName);
+	};
+	
 	return (
 		<React.Fragment>
 			<section>

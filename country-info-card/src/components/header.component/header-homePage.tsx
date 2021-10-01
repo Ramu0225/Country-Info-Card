@@ -39,6 +39,7 @@ const useStyles = makeStyles({
 		justifyContent: "center",
 	},
 });
+
 function Header() {
 	const classes = useStyles();
 	const dispatch = useDispatch();

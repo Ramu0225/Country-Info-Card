@@ -47,7 +47,10 @@ export const fecthCountries = () => {
 		dispatch: Dispatch<{ type: string; payload: Array<Country> | string }>
 	) => {
 		try {
-			const response = await fetch(`https://restcountries.com/v2/all`);
+			const response = await fetch(
+				`https://restcountries-v2.herokuapp.com/all` ||
+					`https://restcountries.com/v2/all`
+			);
 			const data = await response.json();
 			dispatch(fecthCountriesSuccess(data));
 		} catch (e: any) {
@@ -73,7 +76,8 @@ export const fecthCountry = (countryName: string) => {
 	) => {
 		try {
 			const response = await fetch(
-				`https://restcountries.com/v2/name/${countryName}`
+				`https://restcountries-v2.herokuapp.com/country/${countryName}` ||
+					`https://restcountries.com/v2/name/${countryName}`
 			);
 			const data = await response.json();
 			dispatch(fecthCountrySuccess(data));
@@ -83,7 +87,6 @@ export const fecthCountry = (countryName: string) => {
 	};
 };
 export const fecthCountrySuccess = (data: Array<Country>) => {
-	console.log("action:",data)
 	return {
 		type: ActionTypes.fetchCountrySuccess,
 		payload: data,

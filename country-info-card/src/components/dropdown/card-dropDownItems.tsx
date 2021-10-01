@@ -8,11 +8,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import { CountryElement } from "../../redux/type";
 
 
-function NestedList({
-	countryElements,
-}: {
-	countryElements: Array<CountryElement>;
-}) {
+function NestedList({	countryElements,}: {countryElements: Array<CountryElement>;}) {
 	const isOpenObject: { [key: number]: boolean } = {};
 	const [open, setOpen] = React.useState(isOpenObject);
 

@@ -9,7 +9,6 @@ const DEFAULT_STATE: FetchState = {
 };
 
 const countryReducer = (state = DEFAULT_STATE, action: IActions) => {
-	console.log("ctsx", state.country);
 	switch (action.type) {
 		case ActionTypes.fetchCountriesSuccess:
 			const countries = action.payload;
@@ -26,7 +25,6 @@ const countryReducer = (state = DEFAULT_STATE, action: IActions) => {
 			};
 		case ActionTypes.fetchCountrySuccess:
 			const country = action.payload;
-			console.log("ctx.action",country);
 			return {
 				...state,
 				country,
