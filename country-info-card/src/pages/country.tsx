@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Card, CardActions } from "@material-ui/core";
 import CountryTypography from "../components/card/cardTypography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { fecthCountry } from "../redux/action";
+//import { fecthCountry } from "../redux/action";
 import NestedList from "../components/dropdown/card-dropDownItems";
 import NavigationBar from "../components/header.component/header-countryPage";
 import { addToCart } from "../redux/action";
-import { Country, State } from "../redux/type";
+import { Country, AllState } from "../redux/type";
+import UseCountryHook from "../custom-hooks/useCountry";
 
 const useStyles = makeStyles({
 	align1: {
@@ -64,12 +65,28 @@ const useStyles = makeStyles({
 	},
 });
 const languageString = (country: Country) => {
-	return country.languages.map((l) => l.name).join(", ");
+	return country.languages.map((l:any) => l.name).join(", ");
 };
+const currenciesString = (country: Country) => {
+	if (!country.currencies) {
+		return "none";
+	} else {
+		return country.currencies.map((l: any) => l.name).join(", ");
+	}
+	
+};
+const timeZoneString = (country: any) => {
+	if (!country.timezones) {
+		return "none";
+		
+	} else {
+		return country.timezones.join(", ");
+	}
+} ;
+
 const borderString = (country: Country) => {
-	if (!country.borders.length) {
-		country.borders = ["None"];
-		return "";
+	if (!country.borders) {
+		return "None";
 	} else {
 		return country.borders.join(", ");
 	}
@@ -80,22 +97,21 @@ function CountryPage() {
 	const classes = useStyles();
 	const params: { id: string } = useParams();
 	const name = params.id;
-	const { country, error } = useSelector((state: State) => {
-		return { country: state.country, error: state.countryError };
-	});
-	useEffect(() => {
-		dispatch(fecthCountry(name));
-	}, [dispatch, name]);
-	const cartItem = useSelector((state: State) => {
-		return state.cartItem;
-	});
+	const [ country, error ] = UseCountryHook(name);
+	console.log(country,name);
+	const cartItem = useSelector((state: AllState) => {
+			return state.cart.cartItem;
+		});
+		const isInCartItem = (countryName: string) => {
+			return cartItem?.some((c: any) => c.name === countryName);
+		};
 	return (
 		<React.Fragment>
 			<section>
 				<NavigationBar />
 			</section>
 			<section className={classes.align}>
-				{country.map((country, i) => (
+				{country?.map((country, i) => (
 					<Card key={i} className={classes.align1}>
 						<h2 className={classes.title}>{country.name}</h2>
 						<CountryTypography
@@ -106,6 +122,8 @@ function CountryPage() {
 								{ name: country.nativeName, property: "Native Name" },
 								{ name: country.capital, property: "Capital" },
 								{ name: country.region, property: "Region" },
+								{ name: currenciesString(country), property: "Currencies" },
+								{ name: timeZoneString(country), property: "Time Zones" },
 								{ name: borderString(country), property: "Borders" },
 								{ name: languageString(country), property: "Languages" },
 							]}
@@ -119,7 +137,7 @@ function CountryPage() {
 							<Button
 								onClick={() => dispatch(addToCart(country))}
 								className={classes.cartButton}
-								disabled={!!cartItem.find((c:any) => c.name === country.name)}
+								disabled={isInCartItem(country.name)}
 							>
 								BUY
 							</Button>

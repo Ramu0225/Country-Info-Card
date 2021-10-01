@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch } from 'react-redux';
 import { themeMode } from '../../redux/action';
 import { useSelector } from 'react-redux';
-
+import { StateCombiner } from '../../redux/type';
 const ThSwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
@@ -56,8 +56,8 @@ const ThSwitch = styled(Switch)(({ theme }) => ({
 
 function ThemeSwitch() {
   const dispatch = useDispatch();
-  const mode = useSelector((state) => {
-	return state.Theme;
+  const mode = useSelector((state: StateCombiner) => {
+	return state.theme.Theme;
   });
   
   return (

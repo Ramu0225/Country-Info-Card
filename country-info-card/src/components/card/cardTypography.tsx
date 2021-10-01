@@ -7,12 +7,14 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import PeopleIcon from "@mui/icons-material/People";
+import { RowElement } from "../../redux/type";
 
 const useStyles = makeStyles({
 	align: {
 		padding: "0",
 		margin: "0",
 		width: "300px",
+		
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -24,12 +26,13 @@ const useStyles = makeStyles({
 		fontSize: "12px",
 	},
 	title: {
-		textAlign:"center",
+		textAlign: "center",
 		fontWeight: "bold",
 		fontSize: "25px",
 	},
 	img: {
 		width: "dimScreen.width",
+		minHeight: "200px",
 		margin: "0",
 		padding: "0",
 		backgroundSize: "cover",
@@ -41,12 +44,7 @@ const useStyles = makeStyles({
 		fontFamily: "Roboto",
 	},
 });
-export interface RowElement {
-	name: string;
-	isImage?: boolean;
-	isTitle?: boolean;
-	isPopulation?: boolean;
-}
+
 function CountryTypography({
 	rowElements,
 }: {

@@ -5,11 +5,9 @@ import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import { CountryElement } from "../../redux/type";
 
-export interface CountryElement {
-	name: string;
-	property: string;
-}
+
 function NestedList({
 	countryElements,
 }: {
@@ -32,7 +30,7 @@ function NestedList({
 			{countryElements.map((e, i) => (
 				<section key={i}>
 					<ListItemButton
-						onClick={() => {
+						onMouseEnter={() => {
 							handleClick(i);
 						}}
 					>

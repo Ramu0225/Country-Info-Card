@@ -4,11 +4,11 @@ import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/home";
 import CountryPage from "./pages/country";
 import { useSelector } from "react-redux";
-import { State } from "./redux/type";
+import { StateCombiner} from "./redux/type";
 
 function App() {
-	const themeMode = useSelector((state: State) => {
-		return state.Theme;
+	const themeMode = useSelector((state: StateCombiner) => {
+		return state.theme.Theme;
 	});
 	return (
 		<section className={!themeMode ? "Dark" : "App"}>

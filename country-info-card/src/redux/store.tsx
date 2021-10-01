@@ -1,6 +1,6 @@
 import { applyMiddleware, createStore } from "redux";
 import { persistStore } from "redux-persist";
-import reducer from "./reducer";
+import reducer from "./rootReducer";
 import thunk from "redux-thunk";
 
 const middlewares = [thunk];

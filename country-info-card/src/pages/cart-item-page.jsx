@@ -9,8 +9,20 @@ import { removeFromCart } from "../redux/action";
 import { TableBody } from "@material-ui/core";
 import CountryTableRow from "../components/countryTableFormat/tableRow";
 import { makeStyles } from "@material-ui/core/styles";
-import CloseIcon from '@material-ui/icons/Close'
+import CloseIcon from '@material-ui/icons/Close';
+import { AllState} from "../redux/type";
+
 const useStyles = makeStyles({
+	header: {
+		position: "sticky",
+		top: "0",
+		color: "snow",
+		backgroundColor: "#030303",
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-evenly",
+	},
 	align: {
 		width: "100%",
 		display: "flex",
@@ -27,12 +39,12 @@ const useStyles = makeStyles({
 		justifyContent: "space-between",
 	},
 	cartButton: {
-		width:'25%',
+		width: "25%",
 		color: "success",
 	},
 	title: {
-		fontSize: '16px',
-		fontWeight:'bolder'
+		fontSize: "16px",
+		fontWeight: "bolder",
 	},
 	style1: {
 		position: "absolute",
@@ -44,7 +56,7 @@ const useStyles = makeStyles({
 		width: "480px",
 		height: "600px",
 		backgroundColor: "#F0E2E2",
-		opacity: '0.95',
+		opacity: "0.95",
 		border: "2px solid #000",
 		boxShadow: 24,
 		p: 4,
@@ -56,12 +68,11 @@ function CartItemPage() {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
-  const classes = useStyles();
-  const cartItem = useSelector((state) => {
-		return state.cartItem;
+	const classes = useStyles();
+	
+	const cartItem = useSelector((state: AllState) => {
+		return state.cart.cartItem;
 	});
-	
-	
   const country = cartItem;
   
 	return (
@@ -76,13 +87,14 @@ function CartItemPage() {
 				aria-describedby="modal-modal-description"
 			>
 				<Box className={classes.style1}>
-					<Button onClick={handleClose}>
-						<CloseIcon />
-						Close
-					</Button>
+					<section className={classes.header}>
+						<Button color="warning" onClick={handleClose}>
+							<CloseIcon />
+						</Button>
+						<h3>ITEMS IN SHOPPING CART</h3>
+					</section>
 					<section>
-						<h3>List of items to shop:</h3>
-						{(cartItem.length === 0 )? (
+						{!!country.length === 0 ? (
 							"No items in the cart to display"
 						) : (
 							<section>

@@ -3,7 +3,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
-import { RowElement } from "../card/cardTypography";
+import { RowElement } from "../../redux/type";
 
 const useStyles = makeStyles({
 	link: {

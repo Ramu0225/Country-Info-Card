@@ -1,13 +1,18 @@
-export interface State {
-	cartItem: Array<Country>;
-	data: Array<Country>;
-	countries: Array<Country>;
-	country: Array<Country>;
-	countriesError: string;
-	countryError: string;
-	Theme: Boolean;
+export interface AllState{
+	cart: CartState;
+	country: FetchState;
+	theme: ThemeState
 }
-
+export interface RowElement {
+	name: string;
+	isImage?: boolean;
+	isTitle?: boolean;
+	isPopulation?: boolean;
+}
+export interface CountryElement {
+	name: string | number;
+	property: string;
+}
 export interface Country {
 	name: string;
 	population: number;
@@ -17,8 +22,24 @@ export interface Country {
 	flag: string;
 	nativeName: string;
 	capital: string;
+	currencies: Array<{ name: string }>;
+	timeZones: Array<string>;
+}
+export interface FetchState {
+	data: Array<Country>;
+	countries: Array<Country> | undefined;
+	country: Array<Country> | undefined;
+	countriesError: string | any;
+	countryError: string;
 }
 
+export interface CartState {
+	cartItem: Array<Country> | undefined ;
+}
+
+export interface ThemeState {
+	Theme: Boolean;
+}
 export interface AddCountryAction {
 	type: ActionTypes.addCountry;
 	payload: Country;
@@ -29,7 +50,7 @@ export interface ChangeModeAction {
 	payload: Boolean;
 }
 export interface SortByPopulationAction {
-  type: ActionTypes.sortByPopulation;
+	type: ActionTypes.sortByPopulation;
 }
 export interface SortByCountryNameAction {
 	type: ActionTypes.sortByCountryName;

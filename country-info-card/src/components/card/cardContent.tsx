@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import { Button, Card } from "@material-ui/core";
 import CountryTypography from "./cardTypography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/action";
-import { fecthCountries } from "../../redux/action";
-import { State } from "../../redux/type";
+//import { fecthCountries } from "../../redux/action";
+import {  StateCombiner} from "../../redux/type";
+//import { useSelector } from "react-redux";
+import UseCountriesHook from "../../custom-hooks/useCountries";
 
 const useStyles = makeStyles({
 	root: {
@@ -41,33 +43,38 @@ const useStyles = makeStyles({
 
 function CountriesCardContent() {
 	const dispatch = useDispatch();
-
-	const { countries, error } = useSelector((state: State) => {
-		return { countries: state.countries, error: state.countriesError };
+	//useEffect(() => {
+	//	dispatch(fecthCountries());
+	//}, [dispatch]);
+	//const { countries, error } = useSelector((state:StateCombiner) => {
+		
+	//return {
+	//countries: state.country.countries,
+	//error: state.country.countriesError,
+	//	};
+	//	});
+	const [countries, error] = UseCountriesHook();
+	
+	const cartItem = useSelector((state: StateCombiner) => {
+		return state.cart.cartItem;
 	});
-
-	useEffect(() => {
-		if (!countries.length) {
-			dispatch(fecthCountries());
-		}
-	}, [dispatch, countries]);
-
-	const cartItem = useSelector((state: State) => {
-		return state.cartItem;
+	const isInCartItem = ((countryname:string) =>{
+		return cartItem?.some((c: any) => c.name === countryname);
 	});
 
 	const classes = useStyles();
+	
 	return (
 		<section className={classes.row} >
-			{(!!countries.length) &&
-				countries.map((country) => (
+			{!!countries &&
+				countries.map((country:any) => (
 					<Card
 						key={country.name}
 						className={`${classes.root} ${classes.column}`}
 					>
 						<CountryTypography
 							rowElements={[
-								{ name: country.flag, isImage: true },
+								{ name: country.flags.png, isImage: true },
 								{ name: country.name, isTitle: true },
 								{ name: `${country.population}`, isPopulation: true },
 								{ name: `${country.region}` },
@@ -77,7 +84,7 @@ function CountriesCardContent() {
 						<Button
 							onClick={() => dispatch(addToCart(country))}
 							className={classes.cartButton}
-							disabled={!!cartItem.find((c:any) => c.name === country.name)}
+							disabled={isInCartItem(country.name)}
 						>
 							BUY
 						</Button>
