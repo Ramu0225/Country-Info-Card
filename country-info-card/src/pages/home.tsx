@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CountriesCardContent from '../components/card/cardContent';
 import Header from '../components/header.component/header-homePage';
+import Loader from '../components/loader/loader';
 
 const useStyles = makeStyles({
 	align: {
@@ -20,7 +21,8 @@ function HomePage() {
 		<React.Fragment>
 			<Header />
 			<section className={classes.align}>
-				<CountriesCardContent />
+				<Loader />
+				<CountriesCardContent  />
 			</section>
 		</React.Fragment>
 	);

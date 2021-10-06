@@ -2,14 +2,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fecthCountry } from '../redux/action';
-import { AllState } from '../redux/type';
+import { State } from '../redux/type';
 
-function UseCountryHook(countryName) {
+function UseCountryHook(countryName:string) {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fecthCountry(countryName));
     }, [dispatch, countryName]);
-    const {country, error }= useSelector((state: AllState) => {
+    const {country, error }= useSelector((state: State) => {
 		return {
 			country: state.country.country,
 			error: state.country.countryError,

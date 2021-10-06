@@ -10,7 +10,7 @@ import { TableBody } from "@material-ui/core";
 import CountryTableRow from "../components/countryTableFormat/tableRow";
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from '@material-ui/icons/Close';
-import { AllState} from "../redux/type";
+import { State} from "../redux/type";
 
 const useStyles = makeStyles({
 	header: {
@@ -56,9 +56,8 @@ const useStyles = makeStyles({
 		width: "480px",
 		height: "600px",
 		backgroundColor: "#F0E2E2",
-		opacity: "0.95",
-		border: "2px solid #000",
-		boxShadow: 24,
+		border: "2px solid #F0E2E2",
+		boxShadow: '24px',
 		p: 4,
 	},
 });
@@ -70,7 +69,7 @@ function CartItemPage() {
   const dispatch = useDispatch();
 	const classes = useStyles();
 	
-	const cartItem = useSelector((state: AllState) => {
+	const cartItem = useSelector((state: State) => {
 		return state.cart.cartItem;
 	});
   const country = cartItem;
@@ -94,11 +93,11 @@ function CartItemPage() {
 						</Button>
 					</section>
 					<section>
-						{!!country.length === 0 ? (
+						{!country?.length? (
 							"No items in the cart to display"
 						) : (
 							<section>
-								{country.map((country, i) => (
+								{country?.map((country, i) => (
 									<section key={i} className={classes.items}>
 										<TableBody>
 											<CountryTableRow

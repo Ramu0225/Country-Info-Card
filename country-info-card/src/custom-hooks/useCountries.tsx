@@ -1,17 +1,16 @@
 // This hook is used to fetch all countries
 import { useEffect} from 'react';
-import { StateCombiner } from '../redux/type';
 import { useDispatch, useSelector} from 'react-redux';
 import { fecthCountries } from '../redux/action';
-import { AllState } from '../redux/type';
+import { State } from '../redux/type';
 
 function UseCountriesHook() {
     const dispatch = useDispatch();
-    useEffect(() => {
+    useEffect(() => { 
         dispatch(fecthCountries());
     }, [dispatch]);
 
-    const {countries, error} = useSelector((state: AllState) => {
+    const {countries, error} = useSelector((state: State) => {
         return {
             countries : state.country.countries,
             error : state.country.countriesError,
@@ -20,4 +19,4 @@ function UseCountriesHook() {
     return [countries, error];
 }
     
-    export default UseCountriesHook;
+export default UseCountriesHook;

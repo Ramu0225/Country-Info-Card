@@ -1,8 +1,7 @@
-export interface AllState{
-	cart: CartState;
-	country: FetchState;
-	theme: ThemeState
-}
+import rootReducer from "./rootReducer";
+
+export type State = ReturnType<typeof rootReducer>;
+
 export interface RowElement {
 	name: string;
 	isImage?: boolean;
@@ -28,9 +27,9 @@ export interface Country {
 export interface FetchState {
 	data: Array<Country>;
 	countries: Array<Country> | undefined;
-	country: Array<Country> | undefined;
+	country: Array<Country> ;
 	countriesError: string | any;
-	countryError: string;
+	countryError: any;
 }
 
 export interface CartState {
@@ -40,6 +39,9 @@ export interface CartState {
 export interface ThemeState {
 	Theme: Boolean;
 }
+export interface LoaderState{
+	show: boolean;
+}
 export interface AddCountryAction {
 	type: ActionTypes.addCountry;
 	payload: Country;
@@ -47,7 +49,7 @@ export interface AddCountryAction {
 
 export interface ChangeModeAction {
 	type: ActionTypes.changeMode;
-	payload: Boolean;
+	payload: boolean;
 }
 export interface SortByPopulationAction {
 	type: ActionTypes.sortByPopulation;
@@ -64,7 +66,7 @@ export interface RemoveCountryAction {
 }
 export interface SearchCountryAction {
 	type: ActionTypes.searchCountry;
-	payload: string;
+	payload: string | any;
 }
 export interface FetchCountriesSuccessAction {
 	type: ActionTypes.fetchCountriesSuccess;
@@ -82,6 +84,11 @@ export interface FetchCountryErrorAction {
 	type: ActionTypes.fetchCountryError;
 	payload: any;
 }
+export interface ShowLoaderAction {
+	type: ActionTypes.showLoader;
+	payload: boolean;
+}
+
 export type IActions =
 	| AddCountryAction
 	| ChangeModeAction
@@ -93,7 +100,8 @@ export type IActions =
 	| RemoveCountryAction
 	| SortByRegionAction
 	| SortByCountryNameAction
-	| SortByPopulationAction;
+	| SortByPopulationAction
+	| ShowLoaderAction;
 
 export enum ActionTypes {
 	addCountry = "ADD_COUNTRY",
@@ -107,4 +115,6 @@ export enum ActionTypes {
 	fetchCountriesError = "FETCH_COUNTRIES_ERROR",
 	fetchCountrySuccess = "FETCH_COUNTRY_SUCCESS",
 	fetchCountryError = "FETCH_COUNTRY_ERROR",
+	showLoader = "SHOW_LOADER",
+	
 }

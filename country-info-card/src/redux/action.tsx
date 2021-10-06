@@ -13,6 +13,13 @@ export const themeMode = (mode: boolean) => {
 		payload: mode,
 	};
 };
+export const showLoader = (show: boolean) => {
+	return {
+		type: ActionTypes.showLoader,
+		payload: show,
+	};
+}
+
 export const sortByPopulation = () => {
 	return {
 		type: ActionTypes.sortByPopulation,
@@ -44,16 +51,19 @@ export const searchCountry = (countryName: string) => {
 };
 export const fecthCountries = () => {
 	return async (
-		dispatch: Dispatch<{ type: string; payload: Array<Country> | string }>
+		dispatch: Dispatch<{
+			type: string | boolean;
+			payload: Array<Country> | string | boolean;
+		}>
 	) => {
+		dispatch(showLoader(true));
 		try {
-			const response = await fetch(
-				`https://restcountries-v2.herokuapp.com/all` ||
-					`https://restcountries.com/v2/all`
-			);
+			const response = await fetch(`https://restcountries-v2.herokuapp.com/all`);
 			const data = await response.json();
 			dispatch(fecthCountriesSuccess(data));
-		} catch (e: any) {
+			dispatch(showLoader(false));
+		} 
+		catch (e: any) {
 			dispatch(fecthCountriesError(e.toString()));
 		}
 	};
@@ -72,15 +82,14 @@ export const fecthCountriesError = (data: string) => {
 };
 export const fecthCountry = (countryName: string) => {
 	return async (
-		dispatch: Dispatch<{ type: string; payload: Array<Country> | string }>
+		dispatch: Dispatch<{ type: string; payload: Array<Country> | string | boolean}>
 	) => {
+		dispatch(showLoader(true));
 		try {
-			const response = await fetch(
-				`https://restcountries-v2.herokuapp.com/country/${countryName}` ||
-					`https://restcountries.com/v2/name/${countryName}`
-			);
+			const response = await fetch(`https://restcountries-v2.herokuapp.com/country/${countryName}`);
 			const data = await response.json();
 			dispatch(fecthCountrySuccess(data));
+			dispatch(showLoader(false));
 		} catch (e: any) {
 			dispatch(fecthCountryError(e));
 		}

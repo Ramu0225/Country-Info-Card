@@ -1,4 +1,4 @@
-import { ActionTypes, IActions, FetchState } from "../type";
+import { ActionTypes, IActions, FetchState} from "../type";
 
 const DEFAULT_STATE: FetchState = {
 	data: [],

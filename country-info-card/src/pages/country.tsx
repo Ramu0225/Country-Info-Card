@@ -4,12 +4,12 @@ import { Button, Card, CardActions } from "@material-ui/core";
 import CountryTypography from "../components/card/cardTypography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-//import { fecthCountry } from "../redux/action";
 import NestedList from "../components/dropdown/card-dropDownItems";
 import NavigationBar from "../components/header.component/header-countryPage";
 import { addToCart } from "../redux/action";
-import { Country, AllState } from "../redux/type";
+import { Country, State } from "../redux/type";
 import UseCountryHook from "../custom-hooks/useCountry";
+import Loader from "../components/loader/loader";
 
 const useStyles = makeStyles({
 	align1: {
@@ -97,7 +97,7 @@ function CountryPage() {
 	const name = params.id;
 	const [country, error] = UseCountryHook(name);
 
-	const cartItem = useSelector((state: AllState) => {
+	const cartItem = useSelector((state: State) => {
 		return state.cart.cartItem;
 	});
 	const isInCartItem = (countryName: string) => {
@@ -109,8 +109,9 @@ function CountryPage() {
 			<section>
 				<NavigationBar />
 			</section>
+			<Loader/>
 			<section className={classes.align}>
-				{country?.map((country, i) => (
+				{!!country?.length && country?.map((country:any, i:any) => (
 					<Card key={i} className={classes.align1}>
 						<h2 className={classes.title}>{country.name}</h2>
 						<CountryTypography

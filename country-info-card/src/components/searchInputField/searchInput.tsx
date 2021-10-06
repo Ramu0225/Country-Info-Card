@@ -15,13 +15,28 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 function SearchInput() {
-	const [value, setValue] = useState("");
+	
 	const classes = useStyles();
 	const dispatch = useDispatch();
-	const searchCountries = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const [value, setValue] = useState("");
+	const useDebounce = (values:string, delay:number) => {
+		React.useEffect(() => {
+			const handler = setTimeout(() => {
+				setValue(values);
+			}, delay);
+			return () => {
+				clearTimeout(handler);
+			};
+		});
+		return value;
+	};
+		const lastValue = useDebounce(value, 500);
+	
+	const SearchCountries = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
+		console.log(lastValue);
 		setValue(e.target.value);
-		dispatch(searchCountry(value));
+		dispatch(searchCountry(lastValue));
 	};
 	const keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.code === "Enter") {
@@ -32,7 +47,7 @@ function SearchInput() {
 	return (
 		<form className={classes.root} noValidate autoComplete="off">
 			<TextField
-				onChange={searchCountries}
+				onChange={SearchCountries}
 				onKeyPress={keyPressHandler}
 				id="outlined-basic"
 				label="Search Country"

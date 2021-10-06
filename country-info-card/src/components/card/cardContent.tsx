@@ -3,7 +3,7 @@ import CountryTypography from "./cardTypography";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/action";
-import {  AllState} from "../../redux/type";
+import {State} from "../../redux/type";
 import UseCountriesHook from "../../custom-hooks/useCountries";
 
 const useStyles = makeStyles({
@@ -42,7 +42,7 @@ function CountriesCardContent() {
 	const dispatch = useDispatch();
 	const [countries, error] = UseCountriesHook();
 	
-	const cartItem = useSelector((state: AllState) => {
+	const cartItem = useSelector((state: State) => {
 		return state.cart.cartItem;
 	});
 

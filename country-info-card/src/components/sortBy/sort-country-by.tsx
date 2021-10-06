@@ -10,7 +10,7 @@ import { sortByCountryName, sortByPopulation, sortByRegion } from "../../redux/a
 function SortCountryBy() {
 	const [sort, setSort] = React.useState("");
   const dispatch = useDispatch();
-	const handleChange = (event) => {
+	const handleChange = (event:any) => {
     setSort(event.target.value);
     if (event.target.value === 'Population') {
       dispatch(sortByPopulation())

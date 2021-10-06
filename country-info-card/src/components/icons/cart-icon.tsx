@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { StateCombiner } from "../../redux/type";
+import { State } from "../../redux/type";
 import ShoppingCartIcon from "../shoppingCart/shoppingcart";
 
 function CartIcon() {
-	const cartItem = useSelector((state: StateCombiner) => {
+	const cartItem = useSelector((state: State) => {
 		return state.cart.cartItem;
 	});
 	return (
